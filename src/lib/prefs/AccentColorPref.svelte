@@ -9,9 +9,9 @@
 </script>
 
 <div class="flex items-center">
-	<Label>Accent color</Label>
+	<Label>强调色</Label>
 
-	<Info>Changes the color of highlighted elements, such as buttons and checkboxes.</Info>
+	<Info>更改高亮显示元素（如按钮和复选框）的颜色.</Info>
 
 	<Dropdown
 		class="grow"

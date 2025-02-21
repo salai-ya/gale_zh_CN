@@ -37,7 +37,7 @@
 
 	const contextItems: ModContextItem[] = [
 		{
-			label: 'Uninstall',
+			label: '卸载',
 			icon: 'mdi:delete',
 			onclick: (mod) =>
 				uninstall({
@@ -46,7 +46,7 @@
 				})
 		},
 		{
-			label: 'Change version',
+			label: '更改版本',
 			icon: 'mdi:edit',
 			onclick: () => {},
 			showFor: (mod) => mod.versions.length > 1,
@@ -57,14 +57,14 @@
 				}))
 		},
 		{
-			label: 'Show dependants',
+			label: '显示依赖',
 			icon: 'mdi:source-branch',
 			onclick: openDependants
 		},
 		{
-			label: 'Open folder',
+			label: '打开文件夹',
 			icon: 'mdi:folder',
-			onclick: (mod) => invokeCommand('open_mod_dir', { uuid: mod.uuid })
+			onclick: (mod) => invokeCommand('打开mod文件夹', { uuid: mod.uuid })
 		}
 	];
 

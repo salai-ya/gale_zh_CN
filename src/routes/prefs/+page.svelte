@@ -54,21 +54,21 @@
 
 <div class="mx-auto flex w-full max-w-4xl flex-col gap-1 overflow-y-auto px-6 pt-2 pb-6">
 	{#if prefs !== null && gamePrefs !== null}
-		<LargePrefsHeading>Global settings</LargePrefsHeading>
+		<LargePrefsHeading>全局设置</LargePrefsHeading>
 
-		<SmallPrefsHeading>Locations</SmallPrefsHeading>
+		<SmallPrefsHeading>位置</SmallPrefsHeading>
 
 		<PathPref
-			label="Gale data folder"
+			label="Gale 数据文件夹"
 			type="dir"
 			value={prefs.dataDir}
 			set={set((value, prefs) => (prefs.dataDir = value))}
 		>
-			The folder where mods and profiles are stored. Changing this will move the existing data.
+			存储 mod 和 profiles 的文件夹。更改此设置将移动现有数据。
 		</PathPref>
 
 		<PathPref
-			label="Steam executable"
+			label="Steam 可执行文件"
 			type="file"
 			value={prefs.steamExePath ?? null}
 			set={set((value, prefs) => (prefs.steamExePath = value))}
@@ -77,16 +77,16 @@
 		</PathPref>
 
 		<PathPref
-			label="Steam library"
+			label="Steam 库"
 			type="dir"
 			value={prefs.steamLibraryDir ?? null}
 			set={set((value, prefs) => (prefs.steamLibraryDir = value))}
 		>
-			Path to your default Steam game library. Used to automatically find the location of Steam
-			games.
+			默认 Steam 游戏库的路径。用于自动查找 Steam 的位置
+			游戏。
 		</PathPref>
 
-		<SmallPrefsHeading>Appearance</SmallPrefsHeading>
+		<SmallPrefsHeading>外观</SmallPrefsHeading>
 
 		<AccentColorPref />
 
@@ -95,53 +95,53 @@
 			set={set((value, prefs) => (prefs.zoomFactor = value))}
 		/>
 
-		<SmallPrefsHeading>Miscellaneous</SmallPrefsHeading>
+		<SmallPrefsHeading>杂项</SmallPrefsHeading>
 
 		<ApiKeyPref />
 
 		<TogglePref
-			label="Fetch mods automatically"
+			label="自动获取 Mod"
 			value={prefs.fetchModsAutomatically}
 			set={set((value, prefs) => (prefs.fetchModsAutomatically = value))}
 		>
-			Whether to automatically fetch mods every 15 minutes. This will ensure the mod list stays
-			relatively up-to-date, but can be disabled to save bandwidth.
+			是否每 15 分钟自动获取一次 Mod。这将确保 Mod 列表保持不变
+			相对最新，但可以禁用以节省带宽。
 			<br />
-			To manually trigger a fetch, go to <b>File &gt; Fetch mods</b>.
+			要手动触发 fetch，请转到 <b>文件 &gt; 刷新mod</b>.
 		</TogglePref>
 
 		<TogglePref
-			label="Send telemetry"
+			label="发送遥测数据"
 			value={prefs.sendTelemetry}
 			set={set((value, prefs) => (prefs.sendTelemetry = value))}
 		>
-			Whether to send anonymous usage metrics when the app starts.
+			是否在应用程序启动时发送匿名使用指标。
 		</TogglePref>
 
 		<LargePrefsHeading>
-			{$activeGame?.name} settings
+			{$activeGame?.name} 设置
 		</LargePrefsHeading>
 
-		<SmallPrefsHeading>Locations</SmallPrefsHeading>
+		<SmallPrefsHeading>地址</SmallPrefsHeading>
 
 		{#if platforms.length > 0}
 			<PlatformPref value={gamePrefs.platform} set={set((value) => (gamePrefs.platform = value))} />
 		{/if}
 
 		<PathPref
-			label={needsDirectory ? 'Game directory' : 'Override game directory'}
+			label={needsDirectory ? '游戏目录' : '覆盖游戏目录'}
 			type="dir"
 			canClear={true}
 			value={gamePrefs.dirOverride}
 			set={set((value) => (gamePrefs.dirOverride = value))}
 		>
-			Overrides the location of the {$activeGame?.name} folder.
+			覆盖 {$activeGame?.name} 文件夹中。
 			{#if !needsDirectory}
-				If unset, Gale will try to find it via the specified platform instead.
+				如果未设置，Gale 将尝试通过指定的平台找到它。
 			{/if}
 		</PathPref>
 
-		<SmallPrefsHeading>Launch</SmallPrefsHeading>
+		<SmallPrefsHeading>启动模式</SmallPrefsHeading>
 
 		<LaunchModePref
 			value={gamePrefs.launchMode}

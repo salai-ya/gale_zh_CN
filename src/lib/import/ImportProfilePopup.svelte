@@ -59,7 +59,7 @@
 		data.name = name;
 
 		if (mode === 'overwrite') {
-			let confirmed = await confirm(`Are you sure you want to override ${data.name}?`);
+			let confirmed = await confirm(`是否确实要覆盖 ${data.name}?`);
 
 			if (!confirmed) return;
 		}
@@ -76,7 +76,7 @@
 </script>
 
 <Popup
-	title="Import profile"
+	title="导入配置文件"
 	bind:open
 	onClose={() => {
 		data = null;
@@ -87,8 +87,8 @@
 		<TabsMenu
 			bind:value={mode}
 			options={[
-				{ value: 'new', label: 'Create new' },
-				{ value: 'overwrite', label: 'Overwrite existing' }
+				{ value: 'new', label: '新建' },
+				{ value: 'overwrite', label: '覆盖现有' }
 			]}
 		>
 			<Tabs.Content value="new">
@@ -106,13 +106,13 @@
 								<Icon icon="mdi:error" />
 
 								<div slot="tooltip">
-									Profile {name} already exists!
+									个人资料 {name} 已存在！
 								</div>
 							</Tooltip>
 						{/if}
 					</div>
 
-					<Info>A unique name for the imported profile.</Info>
+					<Info>导入的配置文件的唯一名称。</Info>
 				</div>
 			</Tabs.Content>
 
@@ -128,30 +128,28 @@
 						bind:selected={name}
 					/>
 
-					<Info>Which existing profile to overwrite with the imported one.</Info>
+					<Info>要用导入的配置文件覆盖的现有配置文件。</Info>
 				</div>
 			</Tabs.Content>
 		</TabsMenu>
 
 		<details>
 			<summary class="mt-2 cursor-pointer text-slate-300"
-				>{data.modNames.length} mods to install</summary
+				>{data.modNames.length}个要安装的 Mod</summary
 			>
 
 			<ModCardList names={data.modNames} class="mt-2 max-h-[50vh] shrink grow" />
 		</details>
 
 		<details>
-			<summary class="mt-1 cursor-pointer text-slate-300">Advanced options</summary>
+			<summary class="mt-1 cursor-pointer text-slate-300">高级选项</summary>
 
 			<div class="mt-1 flex items-center">
-				<Label>Import all files</Label>
+				<Label>导入所有文件</Label>
 				<Checkbox bind:value={importAll} />
 				<Info>
-					Import all files found in the profile, instead of just well-known config file formats.
-					This is unsafe and can let an attacker install malware on your system. <b
-						>Only enable this for trusted profiles!</b
-					>
+					导入配置文件中找到的所有文件，而不仅仅是众所周知的配置文件格式。
+					这是不安全的，可能会让攻击者在您的系统上安装恶意软件。<b >仅对可信配置文件启用此功能！</b >
 				</Info>
 			</div>
 		</details>
@@ -162,21 +160,21 @@
 				on:click={() => {
 					open = false;
 					data = null;
-				}}>Cancel</BigButton
+				}}>取消</BigButton
 			>
-			<BigButton disabled={!nameAvailable || loading} on:click={importData}>Import</BigButton>
+			<BigButton disabled={!nameAvailable || loading} on:click={importData}>导入</BigButton>
 		</div>
 	{:else}
 		<div class="mt-1 flex gap-2">
 			<div class="grow">
-				<InputField bind:value={key} class="w-full" size="lg" placeholder="Enter import code..." />
+				<InputField bind:value={key} class="w-full" size="lg" placeholder="输入导入代码..." />
 			</div>
 
 			<BigButton on:click={submitKey} disabled={loading}>
 				{#if loading}
 					<Icon icon="mdi:loading" class="animate-spin" />
 				{:else}
-					Import
+					导入
 				{/if}
 			</BigButton>
 		</div>

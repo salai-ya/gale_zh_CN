@@ -76,7 +76,7 @@
 	}
 
 	async function refresh() {
-		loading = 'Loading...';
+		loading = '加载';
 
 		let args = await invokeCommand<ModpackArgs>('get_pack_args');
 
@@ -101,7 +101,7 @@
 	async function browseIcon() {
 		let path = await open({
 			defaultPath: iconPath.length > 0 ? iconPath : undefined,
-			title: 'Select modpack icon',
+			title: '选择 modpack 图标',
 			filters: [{ name: 'Images', extensions: ['png', 'jpg', 'jpeg', 'gif'] }]
 		});
 
@@ -117,14 +117,14 @@
 
 	async function exportToFile() {
 		let dir = await open({
-			title: 'Choose folder to save modpack',
+			title: '选择要保存 modpack 的文件夹',
 			defaultPath: `${name}.zip`,
 			directory: true
 		});
 
 		if (!dir) return;
 
-		loading = 'Exporting modpack to file...';
+		loading = '正在将 modpack 导出到文件...';
 		try {
 			await invokeCommand('export_pack', { args: args(), dir });
 		} finally {
@@ -154,7 +154,7 @@
 			if (!hasToken) return;
 		}
 
-		loading = 'Uploading modpack to Thunderstore...';
+		loading = '正在将 modpack 上传到 Thunderstore...';
 		try {
 			await invokeCommand('upload_pack', { args: args() });
 			donePopupOpen = true;
@@ -201,13 +201,13 @@
 
 	<FormField
 		label="Name"
-		description="The name of the modpack, as shown on Thunderstore. Make sure this stays consistent between updates. Cannot contain spaces or hyphens."
+		description="整合包的名称，如 Thunderstore 上所示。请确保这在更新之间保持一致。不能包含空格或连字符。"
 		required={true}
 	>
 		<InputField
 			on:change={saveArgs}
 			bind:value={name}
-			placeholder="Enter name..."
+			placeholder="输入名称..."
 			required={true}
 			pattern="^[a-zA-Z0-9_]+$"
 			class="w-full"
@@ -215,24 +215,24 @@
 	</FormField>
 
 	<FormField
-		label="Author"
-		description="The author of the modpack, which should be the name of your Thunderstore team."
+		label="作者"
+		description="整合包的作者，应该是您的 Thunderstore 团队的名称."
 		required={true}
 	>
 		<InputField
 			on:change={saveArgs}
 			bind:value={author}
-			placeholder="Enter author..."
+			placeholder="输入 作者..."
 			required={true}
 			class="w-full"
 		/>
 	</FormField>
 
-	<FormField label="Description" description="A short description of the modpack." required={true}>
+	<FormField label="描述" description="整合包的简短描述。" required={true}>
 		<InputField
 			on:change={saveArgs}
 			bind:value={description}
-			placeholder="Enter description..."
+			placeholder="输入描述..."
 			required={true}
 			maxlength={250}
 			class="w-full"
@@ -240,8 +240,8 @@
 	</FormField>
 
 	<FormField
-		label="Categories"
-		description="The categories that the modpack belongs to. 'Modpacks' is always included."
+		label="类别"
+		description="整合包所属的类别。“整合包”始终包含在内."
 	>
 		<Dropdown
 			avoidCollisions={false}
@@ -287,50 +287,50 @@
 	</FormField>
 
 	<FormField
-		label="Version"
-		description="The version number of the modpack, in the format of X.Y.Z.
-			           You cannot publish with the same version number twice."
+		label="版本"
+		description="整合包的版本号，格式为 X.Y.Z.
+			           不能使用相同的版本号发布两次。"
 		required={true}
 	>
 		<InputField
 			on:change={saveArgs}
 			bind:value={versionNumber}
-			placeholder="Enter version number..."
+			placeholder="输入版本号..."
 			required={true}
 			pattern="^\d+\.\d+\.\d+$"
 			class="w-full"
 		/>
 	</FormField>
 
-	<FormField label="Website" description="The URL of a website of your choosing. Optional.">
+	<FormField label="网站" description="您选择的网站的 URL 自选。">
 		<InputField
 			on:change={saveArgs}
 			bind:value={websiteUrl}
-			placeholder="Enter website URL..."
+			placeholder="输入网站 URL..."
 			pattern={URL_PATTERN}
 			class="w-full"
 		/>
 	</FormField>
 
 	<FormField
-		label="Icon"
-		description="Path to the icon of the modpack. This is automatically resized to 256x256 pixels, so
-                 it's recommended to be a square image to avoid stretching or squishing."
+		label="图标"
+		description="整合包图标的路径。这会自动调整为 256x256 像素,
+               建议为方形图像，以避免拉伸或挤压."
 		required={true}
 	>
 		<PathField icon="mdi:file-image" on:click={browseIcon} value={iconPath} />
 	</FormField>
 
 	<FormField
-		label="Readme"
-		description="A longer description of the modpack, which supports markdown formatting 
-                 (similarly to Discord messages)."
+		label="自述文件"
+		description="支持 Markdown 格式的 modpack 的较长描述
+                 (类似于 Discord 消息)."
 		required={true}
 	>
 		<ResizableInputField
 			on:change={saveArgs}
 			bind:value={readme}
-			placeholder="Enter readme..."
+			placeholder="输入自述文件..."
 			mono={true}
 		/>
 
@@ -342,13 +342,13 @@
 	</FormField>
 
 	<FormField
-		label="Changelog"
-		description="A list of changes in the modpack, also supports markdown formatting. Leave empty to omit."
+		label="更改日志"
+		description="modpack 中的更改列表也支持 markdown 格式。留空可省略。"
 	>
 		<ResizableInputField
 			on:change={saveArgs}
 			bind:value={changelog}
-			placeholder="Enter changelog..."
+			placeholder="输入 更改日志..."
 			mono={true}
 		/>
 
@@ -365,15 +365,15 @@
 	</FormField>
 
 	<FormField
-		label="Include files ({includedFileCount}/{includeFiles?.size})"
-		description="Choose which config files to include in the modpack."
+		label="导入文件 ({includedFileCount}/{includeFiles?.size})"
+		description="选择要包含在 modpack 中的配置文件。"
 	>
 		<details>
 			{#if includeFiles}
 				<summary class="cursor-pointer text-sm text-slate-300">Show list</summary>
 				<Checklist
 					class="mt-1"
-					title="Include all"
+					title="导入全部"
 					items={Array.from(includeFiles.keys()).sort()}
 					getLabel={(item) => item}
 					get={(item) => includeFiles.get(item) ?? false}
@@ -387,37 +387,37 @@
 	</FormField>
 
 	<div class="mt-1 flex items-center text-lg font-medium text-slate-200">
-		<span class="max-w-96 grow">Contains NSFW content</span>
+		<span class="max-w-96 grow">包含 NSFW 内容</span>
 
 		<Checkbox onValueChanged={saveArgs} bind:value={nsfw} />
 	</div>
 
 	<div class="flex items-center text-lg font-medium text-slate-200">
-		<span class="max-w-96 grow">Include disabled mods</span>
+		<span class="max-w-96 grow">包含已禁用的 Mod</span>
 
 		<Checkbox onValueChanged={saveArgs} bind:value={includeDisabled} />
 	</div>
 
 	<div class="mt-3 flex justify-end gap-2">
-		<BigButton color="slate" on:click={exportToFile}>Export to file</BigButton>
-		<BigButton color="accent" on:click={uploadToThunderstore}>Publish on Thunderstore</BigButton>
+		<BigButton color="slate" on:click={exportToFile}>导出到文件</BigButton>
+		<BigButton color="accent" on:click={uploadToThunderstore}>在 Thunderstore 上发布</BigButton>
 	</div>
 </div>
 
 <ApiKeyPopup />
 
-<Popup bind:open={donePopupOpen} title="Modpack upload complete">
+<Popup bind:open={donePopupOpen} title="整合包上传完成">
 	<Dialog.Description class="text-slate-300">
 		{name}
-		{versionNumber} has successfully been published on Thunderstore!
+		{versionNumber}已成功发布到 Thunderstore!
 		<Link href="https://thunderstore.io/c/{$activeGame?.slug}/p/{author}/{name}"
-			>Click here to view its page on the website</Link
+			>单击此处在网站上查看其页面</Link
 		>.
 	</Dialog.Description>
 
 	<div class="mt-2 text-sm text-slate-400">
-		The changes may take up to an hour to appear in Gale and other mod managers.
+	这些更改可能需要长达一个小时才能显示在 Gale 和其他 Mod 管理器中。
 		<br />
-		To publish a new update, increment the version number and publish the modpack again.
+	要发布新的更新，请递增版本号并再次发布 modpack。
 	</div>
 </Popup>

@@ -19,11 +19,11 @@
 </script>
 
 <div class="flex items-center">
-	<Label>Thunderstore API token</Label>
+	<Label>Thunderstore API 令牌</Label>
 
 	<Info>
-		Thunderstore API token to use for modpack publishing. Once this is set, you will <b>not</b> be able
-		to view the token again.
+		用于 modpack 发布的 Thunderstore API 令牌。设置完成后<b>，您将无法</b>
+		以再次查看令牌。
 	</Info>
 
 	<Button.Root

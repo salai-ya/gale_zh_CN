@@ -64,44 +64,44 @@
 			<p>You can automatically transfer profiles from another mod manager to Gale.</p>
 
 			<p class="mt-1">
-				You can always import profiles later by going to <b>Import &gt; ...from r2modman</b>.
+				您始终可以稍后通过转到 <b>导入 &gt;...来自 R2Modman</b>.
 			</p>
 
 			<ImportR2Flow bind:importData bind:this={importFlow} />
 
 			<div class="mt-2 flex gap-1.5">
 				<BigButton color="slate" class="mr-auto" on:click={() => (stage = 'gameSelect')}
-					>Back</BigButton
+					>返回</BigButton
 				>
-				<BigButton color="slate" on:click={() => (stage = 'settings')}>Skip</BigButton>
-				<BigButton color="accent" on:click={importProfiles}>Import</BigButton>
+				<BigButton color="slate" on:click={() => (stage = 'settings')}>跳过</BigButton>
+				<BigButton color="accent" on:click={importProfiles}>导入</BigButton>
 			</div>
 		{:else if stage === 'settings'}
 			<p>
-				Let's make sure your settings are to your liking.
+				让我们确保您的设置符合您的喜好。
 				<br />
-				You can always edit these later by going to <Icon icon="mdi:settings" class="mb-1 inline" />
-				<b>Settings</b>.
+				您以后可以随时到 <Icon icon="mdi:settings" class="mb-1 inline" />
+				<b>设置</b>.
 			</p>
 
 			<div class="mt-3 flex flex-col gap-1">
 				{#if prefs !== null}
 					<PathPref
-						label="Gale data folder"
+						label="Gale 数据文件夹"
 						type="dir"
 						value={prefs.dataDir}
 						set={set((value, prefs) => (prefs.dataDir = value))}
 					>
-						The folder where mods and profiles are stored.
+						存储 mod 和 profiles 的文件夹。
 					</PathPref>
 
 					<PathPref
-						label="Steam library location"
+						label="Steam 库位置"
 						type="dir"
 						value={prefs.steamLibraryDir}
 						set={set((value, prefs) => (prefs.steamLibraryDir = value))}
 					>
-						Path to your default Steam game library.
+						默认 Steam 游戏库的路径。
 					</PathPref>
 				{/if}
 			</div>
@@ -110,19 +110,19 @@
 				<BigButton
 					color="slate"
 					on:click={() => (stage = importData === null ? 'gameSelect' : 'importProfiles')}
-					>Back</BigButton
+					>返回</BigButton
 				>
-				<BigButton color="accent" on:click={() => (stage = 'end')}>Next</BigButton>
+				<BigButton color="accent" on:click={() => (stage = 'end')}>下一个</BigButton>
 			</div>
 		{:else if stage === 'end'}
-			<p>That's it, you're all set up to start modding!</p>
+			<p>就是这样，你已经准备好开始修改了！</p>
 
 			<p class="mt-1">
-				If you have any questions or need help, feel free to ask in the <a
+				如果您有任何问题或需要帮助，请随时在 <a
 					href="https://discord.gg/sfuWXRfeTt"
 					target="_blank"
-					class="text-accent-400 hover:underline">Discord server</a
-				>.
+					class="text-accent-400 hover:underline">Discord 服务器</a
+				>联系我们。
 			</p>
 		{/if}
 	</div>

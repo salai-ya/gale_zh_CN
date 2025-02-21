@@ -14,9 +14,9 @@
 </script>
 
 <div class="flex items-center">
-	<Label>Platform</Label>
+	<Label>平台</Label>
 
-	<Info>The platform where your game is installed.</Info>
+	<Info>安装游戏的平台。</Info>
 
 	<Dropdown
 		class="grow"

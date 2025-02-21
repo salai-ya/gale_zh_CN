@@ -46,6 +46,7 @@
 		"bits-ui": "0.19.6",
 		"rehype-highlight": "^7.0.0",
 		"rehype-raw": "^7.0.0",
-		"svelte-exmarkdown": "^3.0.5"
+		"svelte-exmarkdown": "^3.0.5",
+		"svelte-i18n": "^4.0.1"
 	}
 }

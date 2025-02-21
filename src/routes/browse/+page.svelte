@@ -118,7 +118,7 @@
 				Already installed
 			{:else}
 				<Icon icon="mdi:download" class="align-middle text-xl" />
-				Install
+				安装
 				{#if selectedDownloadSize !== null && selectedDownloadSize > 0}
 					({shortenFileSize(selectedDownloadSize)})
 				{/if}
@@ -162,9 +162,9 @@
 
 	<svelte:fragment slot="placeholder">
 		{#if hasRefreshed}
-			<span class="text-lg">No matching mods found</span>
+			<span class="text-lg">未找到匹配的 Mod</span>
 			<br />
-			<span class="text-slate-400">Try to adjust your search query/filters</span>
+			<span class="text-slate-400">尝试调整您的搜索查询/过滤器</span>
 		{/if}
 	</svelte:fragment>
 

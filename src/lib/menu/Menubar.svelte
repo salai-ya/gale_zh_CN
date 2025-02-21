@@ -46,7 +46,7 @@
 
 	async function importLocalMod() {
 		let path = await open({
-			title: 'Select the mod file to import',
+			title: '选择要导入的 mod 文件',
 			filters: [{ name: 'Dll or zip', extensions: ['dll', 'zip'] }]
 		});
 
@@ -57,7 +57,7 @@
 
 	async function importFile() {
 		let path = await open({
-			title: 'Select the file to import',
+			title: '选择要导入的文件',
 			filters: [{ name: 'Profile file', extensions: ['r2z'] }]
 		});
 
@@ -71,7 +71,7 @@
 	async function exportFile() {
 		let dir = await open({
 			directory: true,
-			title: 'Select the folder to export the profile to'
+			title: '选择要将配置文件导出到的文件夹'
 		});
 
 		if (dir === null) return;
@@ -111,7 +111,7 @@
 	}
 
 	async function uninstallDisabledMods() {
-		let confirmed = await confirm('Are you sure you want to uninstall all disabled mods?');
+		let confirmed = await confirm('您确定要卸载所有已禁用的模组吗？');
 		if (!confirmed) return;
 
 		await invokeCommand<number>('remove_disabled_mods');
@@ -129,7 +129,7 @@
 
 	async function clearModCache() {
 		let result = await confirm(
-			"Are you sure you want to delete all cached mods? This could potentially double the disk space used by installed mods. Only proceed if you know what you're doing!"
+			"您确定要删除所有缓存的 Mod 吗？这可能会使已安装的 Mod 使用的磁盘空间增加一倍。只有在您知道自己在做什么的情况下才继续！"
 		);
 
 		if (!result) return;
@@ -163,82 +163,82 @@
 <header data-tauri-drag-region class="flex h-8 shrink-0 bg-slate-800">
 	<Menubar.Root class="flex items-center py-1">
 		<img src="favicon.png" alt="Gale logo" class="mr-2 ml-4 h-5 w-5 opacity-50" />
-		<MenubarMenu label="File">
-			<MenubarItem on:click={() => invokeCommand('open_profile_dir')} text="Open profile folder" />
-			<MenubarItem on:click={() => invokeCommand('open_game_dir')} text="Open game folder" />
+		<MenubarMenu label="文件">
+			<MenubarItem on:click={() => invokeCommand('open_profile_dir')} text="打开配置文件文件夹" />
+			<MenubarItem on:click={() => invokeCommand('open_game_dir')} text="打开游戏文件夹" />
 			<MenubarSeparator />
-			<MenubarItem on:click={() => invokeCommand('open_game_log')} text="Open game log" />
-			<MenubarItem on:click={() => invokeCommand('open_gale_log')} text="Open Gale log" />
+			<MenubarItem on:click={() => invokeCommand('open_game_log')} text="打开游戏日志" />
+			<MenubarItem on:click={() => invokeCommand('open_gale_log')} text="打开 Gale 日志" />
 			<MenubarSeparator />
-			<MenubarItem on:click={clearModCache} text="Clear mod cache" />
+			<MenubarItem on:click={clearModCache} text="清除 Mod 缓存" />
 			<MenubarItem
 				on:click={() => invokeCommand('clear_download_cache', { soft: true })}
-				text="Clear unused mod cache"
+				text="清除未使用的 Mod 缓存"
 			/>
-			<MenubarItem on:click={() => invokeCommand('trigger_mod_fetch')} text="Fetch mods" />
+			<MenubarItem on:click={() => invokeCommand('trigger_mod_fetch')} text="获取 Mod" />
 		</MenubarMenu>
-		<MenubarMenu label="Profile">
+		<MenubarMenu label="配置文件">
 			<MenubarItem
 				on:click={() => (newProfileOpen = true)}
-				text="Create new profile"
+				text="创建新配置文件"
 				key="Ctrl N"
 			/>
 			<MenubarItem
 				on:click={() => openProfileOperation('rename')}
-				text="Rename active profile"
+				text="重命名活动配置文件"
 				key="F2"
 			/>
 			<MenubarItem
 				on:click={() => openProfileOperation('duplicate')}
-				text="Duplicate active profile"
+				text="复制活动配置文件"
 				key="Ctrl D"
 			/>
 			<MenubarSeparator />
-			<MenubarItem on:click={() => invokeCommand('copy_dependency_strings')} text="Copy mod list" />
-			<MenubarItem on:click={() => invokeCommand('copy_debug_info')} text="Copy debug info" />
-			<MenubarItem on:click={copyLaunchArgs} text="Copy launch arguments" />
+			<MenubarItem on:click={() => invokeCommand('copy_dependency_strings')} text="复制 mod 列表" />
+			<MenubarItem on:click={() => invokeCommand('copy_debug_info')} text="复制调试信息" />
+			<MenubarItem on:click={copyLaunchArgs} text="复制启动参数" />
 			<MenubarSeparator />
-			<MenubarItem on:click={() => setAllModsState(true)} text="Enable all mods" />
-			<MenubarItem on:click={() => setAllModsState(false)} text="Disable all mods" />
-			<MenubarItem on:click={uninstallDisabledMods} text="Uninstall disabled mods" />
+			<MenubarItem on:click={() => setAllModsState(true)} text="启用所有 Mod" />
+			<MenubarItem on:click={() => setAllModsState(false)} text="禁用所有 Mod" />
+			<MenubarItem on:click={uninstallDisabledMods} text="卸载已禁用的 Mod" />
 		</MenubarMenu>
-		<MenubarMenu label="Import">
-			<MenubarItem on:click={() => (importProfileOpen = true)} text="...profile from code" />
-			<MenubarItem on:click={importFile} text="...profile from file" />
-			<MenubarItem on:click={importLocalMod} text="...local mod" />
-			<MenubarItem on:click={() => (importR2Open = true)} text="...profiles from r2modman" />
+		<MenubarMenu label="导入">
+			<MenubarItem on:click={() => (importProfileOpen = true)} text="...从代码创建 profile" />
+			<MenubarItem on:click={importFile} text="...从文件创建 profile" />
+			<MenubarItem on:click={importLocalMod} text="...导入本地模组" />
+			<MenubarItem on:click={() => (importR2Open = true)} text="...导入 R2Modman 的配置文件" />
 		</MenubarMenu>
-		<MenubarMenu label="Export">
-			<MenubarItem on:click={() => exportCodePopup.open()} text="...profile as code" />
-			<MenubarItem on:click={exportFile} text="...profile as file" />
+		<MenubarMenu label="导出">
+			<MenubarItem on:click={() => exportCodePopup.open()} text="...导出配置到代码" />
+			<MenubarItem on:click={exportFile} text="...导出配置到文件" />
 		</MenubarMenu>
-		<MenubarMenu label="Window">
+		<MenubarMenu label="窗口">
 			<MenubarItem
 				on:click={() => invokeCommand('zoom_window', { value: { delta: 0.25 } })}
-				text="Zoom in"
+				text="放大"
 				key="Ctrl +"
 			/>
 			<MenubarItem
 				on:click={() => invokeCommand('zoom_window', { value: { delta: -0.25 } })}
-				text="Zoom out"
+				text="缩小"
 				key="Ctrl -"
 			/>
 			<MenubarItem
 				on:click={() => invokeCommand('zoom_window', { value: { factor: 1 } })}
-				text="Reset zoom"
+				text="重置缩放"
 				key="Ctrl 0"
 			/>
 		</MenubarMenu>
 		<MenubarMenu label="Help">
 			<MenubarItem
 				on:click={() => shellOpen('https://github.com/Kesomannen/ModManager/issues/')}
-				text="Report a bug"
+				text="报告 bug"
 			/>
 			<MenubarItem
 				on:click={() => shellOpen('https://discord.gg/sfuWXRfeTt')}
-				text="Join discord server"
+				text="加入 discord 服务器"
 			/>
-			<MenubarItem on:click={() => (aboutOpen = true)} text="About Gale" />
+			<MenubarItem on:click={() => (aboutOpen = true)} text="关于 Gale" />
 		</MenubarMenu>
 	</Menubar.Root>
 
@@ -260,12 +260,12 @@
 >
 	<p class="mb-1 text-slate-300">
 		{profileOperation == 'duplicate'
-			? 'Enter a name for the duplicated profile:'
-			: 'Enter a new name for the profile:'}
+			? '输入复制的配置文件的名称:'
+			: '输入配置文件的新名称:'}
 	</p>
 	<InputField
 		bind:value={profileOperationName}
-		placeholder="Enter name..."
+		placeholder="输入名称..."
 		size="lg"
 		class="w-full"
 		on:submit={doProfileOperation}

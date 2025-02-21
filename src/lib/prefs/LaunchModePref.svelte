@@ -36,14 +36,14 @@
 	<Label>Launch mode</Label>
 
 	<Info>
-		<p>Determines how the game is launched.</p>
+		<p>确定游戏的启动方式。</p>
 		<p class="my-1.5">
-			<b>Launcher:</b> Launches via the specified platform. This is required for some games that, for
-			example, need Steam running to work.
+			<b>Launcher:</b> 通过指定的平台启动。这对于某些游戏是必需的，对于
+			例如，需要运行 Steam 才能工作。
 		</p>
 		<p>
-			<b>Direct:</b> Launches the game directly from the executable. Allows you to launch multiple instances
-			at once.
+			<b>引导:</b> 直接从可执行文件启动游戏。允许您启动多个实例
+			立即。
 		</p>
 	</Info>
 

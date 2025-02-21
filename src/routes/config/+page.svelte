@@ -73,15 +73,15 @@
 		{#if files === undefined}
 			<div class="flex h-full w-full items-center justify-center text-lg text-slate-300">
 				<Icon icon="mdi:loading" class="mr-4 animate-spin" />
-				Loading config...
+				正在加载配置...
 			</div>
 		{:else if files.length === 0}
 			<div class="flex h-full items-center justify-center text-lg text-slate-300">
-				No config files found
+				未找到配置文件
 			</div>
 		{:else}
 			<div class="relative mx-2 my-2">
-				<SearchBar bind:value={searchTerm} placeholder="Search for files..." brightness={800} />
+				<SearchBar bind:value={searchTerm} placeholder="搜索文件..." brightness={800} />
 			</div>
 
 			{#each shownFiles ?? [] as file (file.relativePath)}
@@ -119,8 +119,8 @@
 				<ConfigFileEditor file={selectedFile} section={selectedSection} />
 			{:else if selectedFile.type === 'unsupported'}
 				<div class="mb-1 px-4 text-slate-400">
-					This file is in an unsupported format. Please open it in an external program to make
-					changes.
+					此文件的格式不受支持。请在外部程序中打开它以使
+					变化。
 				</div>
 				<BigButton
 					class="mx-4"
@@ -128,10 +128,10 @@
 					on:click={() => invokeCommand('open_config_file', { file: selectedFile?.relativePath })}
 				>
 					<Icon icon="mdi:open-in-new" class="mr-2" />
-					Open in external program
+					在外部程序中打开
 				</BigButton>
 			{:else if selectedFile.type === 'err'}
-				<div class="mb-1 px-4 text-slate-400">An error occured while reading this config file:</div>
+				<div class="mb-1 px-4 text-slate-400">读取此配置文件时出错：</div>
 				<code class="mx-4 mb-1 flex rounded-sm bg-slate-900 p-4 text-red-500">
 					{capitalize(selectedFile.error)}
 				</code>
@@ -141,12 +141,12 @@
 					on:click={() => invokeCommand('open_config_file', { file: selectedFile?.relativePath })}
 				>
 					<Icon icon="mdi:open-in-new" class="mr-2" />
-					Open in external program
+					在外部程序中打开
 				</BigButton>
 			{/if}
 		{:else}
 			<div class="flex h-full w-full items-center justify-center text-lg text-slate-400">
-				Select a config file to start editing
+				选择配置文件以开始编辑
 			</div>
 		{/if}
 	</div>
