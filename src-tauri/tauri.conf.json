@@ -4,7 +4,7 @@
 	"identifier": "com.kesomannen.gale",
 	"build": {
 		"beforeBuildCommand": "npm run build",
-		"beforeDevCommand": "npm run dconfig.tomlev",
+		"beforeDevCommand": "npm run dev",
 		"frontendDist": "../build",
 		"devUrl": "http://localhost:5173"
 	},

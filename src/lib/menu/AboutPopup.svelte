@@ -25,6 +25,7 @@
 	<img src="logo.png" alt="Logo" class="float-right size-20" />
 	<div>
 		<h3 class="text-xl font-semibold text-white">Gale</h3>
+		<h3 class="text-xl font-semibold text-white">中文汉化 by：<Link href="https://space.bilibili.com/106103796">SALAI</Link></h3>
 		<p class="text-slate-300">
 			版本 {version}
 			<br />

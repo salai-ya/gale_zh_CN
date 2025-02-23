@@ -9,9 +9,6 @@ default-run = "gale"
 edition = "2021"
 rust-version = "1.79"
 
-
-
-
 [[bin]]
 name = "gale"
 path = "src/main.rs"
